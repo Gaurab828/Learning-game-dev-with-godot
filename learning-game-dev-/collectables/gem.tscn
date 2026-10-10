@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cnsl5umtwlup5"]
+
+[ext_resource type="Texture2D" uid="uid://k1e475s2vc7c" path="res://Assets/Misc/Sunnyland items/Sprites/gem/gem-1.png" id="1_1yy3y"]
+[ext_resource type="Texture2D" uid="uid://dmgpo6052d7ht" path="res://Assets/Misc/Sunnyland items/Sprites/gem/gem-2.png" id="2_tkwih"]
+[ext_resource type="Texture2D" uid="uid://7hvuqlmg1vj1" path="res://Assets/Misc/Sunnyland items/Sprites/gem/gem-3.png" id="3_cumba"]
+[ext_resource type="Texture2D" uid="uid://blr4cogb6xe56" path="res://Assets/Misc/Sunnyland items/Sprites/gem/gem-4.png" id="4_5kdxr"]
+[ext_resource type="Texture2D" uid="uid://cv36mlutv66lp" path="res://Assets/Misc/Sunnyland items/Sprites/gem/gem-5.png" id="5_jwt51"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4otcc"]
+radius = 75.42546
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4otcc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1yy3y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_tkwih")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cumba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5kdxr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jwt51")
+}],
+"loop": 1,
+"name": &"diamond",
+"speed": 5.0
+}]
+
+[node name="diamond" type="Area2D" unique_id=563004080]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=169359520]
+shape = SubResource("CircleShape2D_4otcc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=579540361]
+position = Vector2(4.500002, 9.500001)
+scale = Vector2(8.733334, 8.230769)
+sprite_frames = SubResource("SpriteFrames_4otcc")
+animation = &"diamond"
+autoplay = "diamond"

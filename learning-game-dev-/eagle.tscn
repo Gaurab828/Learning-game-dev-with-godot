@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://bobu8xw1bkl64"]
+
+[ext_resource type="Script" uid="uid://dfdadksafn76n" path="res://eagle.gd" id="1_76ec4"]
+[ext_resource type="Texture2D" uid="uid://ckngnff2d5qlq" path="res://Assets/Misc/Sunnyland FX/Sprites/enemy-death/enemy-death-1.png" id="1_fbd01"]
+[ext_resource type="Texture2D" uid="uid://djoosrtag6g8p" path="res://Assets/Misc/Sunnyland FX/Sprites/enemy-death/enemy-death-2.png" id="2_76ec4"]
+[ext_resource type="Texture2D" uid="uid://47l30l0w0sqh" path="res://Assets/Misc/Sunnyland FX/Sprites/enemy-death/enemy-death-3.png" id="3_or3by"]
+[ext_resource type="Texture2D" uid="uid://ciwfpwtaap0ks" path="res://Assets/Misc/Sunnyland FX/Sprites/enemy-death/enemy-death-4.png" id="4_4ojkr"]
+[ext_resource type="Texture2D" uid="uid://men3pm63tfvl" path="res://Assets/Misc/Sunnyland FX/Sprites/enemy-death/enemy-death-5.png" id="5_1dcr0"]
+[ext_resource type="Texture2D" uid="uid://cli0sr800w1tv" path="res://Assets/Misc/Sunnyland FX/Sprites/enemy-death/enemy-death-6.png" id="6_5wgo6"]
+[ext_resource type="Texture2D" uid="uid://dfw7hdhjsl6w8" path="res://Assets/Characters/eagle/Sprites/attack/eagle-attack-1.png" id="7_gh4wl"]
+[ext_resource type="Texture2D" uid="uid://bah1oufo01f76" path="res://Assets/Characters/eagle/Sprites/attack/eagle-attack-2.png" id="8_mf7gj"]
+[ext_resource type="Texture2D" uid="uid://o4a4gvu7e5fk" path="res://Assets/Characters/eagle/Sprites/attack/eagle-attack-3.png" id="9_4wy5v"]
+[ext_resource type="Texture2D" uid="uid://wx0yfyeuak7h" path="res://Assets/Characters/eagle/Sprites/attack/eagle-attack-4.png" id="10_psf7w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ig4if"]
+radius = 18.0
+height = 58.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ig4if"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fbd01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_76ec4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_or3by")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4ojkr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1dcr0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5wgo6")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_gh4wl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_mf7gj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_4wy5v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_psf7w")
+}],
+"loop": 1,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o353j"]
+radius = 301.02658
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4otcc"]
+radius = 16.0
+height = 55.50235
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o353j"]
+radius = 5.0
+height = 36.014767
+
+[node name="eagle" type="CharacterBody2D" unique_id=320996480]
+script = ExtResource("1_76ec4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1651816306]
+visible = false
+position = Vector2(-1, -33)
+rotation = 1.0890448
+shape = SubResource("CapsuleShape2D_ig4if")
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1907152801]
+position = Vector2(5, -30.000002)
+scale = Vector2(2.39375, 1.5457318)
+sprite_frames = SubResource("SpriteFrames_ig4if")
+animation = &"fly"
+metadata/_edit_lock_ = true
+
+[node name="PlayerDetection" type="Area2D" parent="." unique_id=1511467286]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection" unique_id=1339811363]
+visible = false
+shape = SubResource("CircleShape2D_o353j")
+
+[node name="PlayerDeath" type="Area2D" parent="." unique_id=1237522553]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDeath" unique_id=355952687]
+position = Vector2(-2, -30)
+rotation = 0.9934551
+shape = SubResource("CapsuleShape2D_4otcc")
+metadata/_edit_lock_ = true
+
+[node name="Playercollison" type="Area2D" parent="." unique_id=973496281]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Playercollison" unique_id=466760004]
+position = Vector2(-16, -11.000001)
+rotation = -4.3255496
+shape = SubResource("CapsuleShape2D_o353j")
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
+[connection signal="body_entered" from="PlayerDeath" to="." method="_on_player_death_body_entered"]
+[connection signal="body_entered" from="Playercollison" to="." method="_on_playercollison_body_entered"]

@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://djt0l06w1onw8"]
+
+[ext_resource type="Script" uid="uid://do6fle6gyvg8d" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://t1m86a8tq2g7" path="res://bg.tscn" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://djlajfy57oc2x" path="res://Assets/pixel-art-metallic-style-start-button-icon-for-8bit-game-on-white-background-vector.png" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://k1e475s2vc7c" path="res://Assets/Misc/Sunnyland items/Sprites/gem/gem-1.png" id="3_4c57u"]
+[ext_resource type="Texture2D" uid="uid://wwcjg1wfmg7t" path="res://Assets/image_c4e2a3a7.png" id="3_lquwl"]
+[ext_resource type="Texture2D" uid="uid://dfw7hdhjsl6w8" path="res://Assets/Characters/eagle/Sprites/attack/eagle-attack-1.png" id="5_5vw27"]
+[ext_resource type="Texture2D" uid="uid://b5apjqjdhmarw" path="res://Assets/Characters/Foxy/Hurt2/spritesheet.png" id="6_kek77"]
+[ext_resource type="Texture2D" uid="uid://ckqskajnxkfat" path="res://Assets/Characters/frog/Sprites/idle/frog-idle-1.png" id="7_4c57u"]
+[ext_resource type="Texture2D" uid="uid://b6rixkyt7kliv" path="res://Assets/Misc/Sunnyland items/Sprites/cherry/cherry-1.png" id="7_efxa6"]
+[ext_resource type="Texture2D" uid="uid://b4nl1ny2jgilv" path="res://Assets/Characters/Opossum/opossum/opossum-1.png" id="8_efxa6"]
+[ext_resource type="Script" uid="uid://dihd5v7uju2ur" path="res://win_count.gd" id="11_efxa6"]
+
+[sub_resource type="Theme" id="Theme_4otcc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4otcc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1bvp3")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Theme" id="Theme_ig4if"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kek77"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_lquwl")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="main" type="Node2D" unique_id=2125771253]
+script = ExtResource("1_ig7tw")
+
+[node name="Button" type="Button" parent="." unique_id=910038647]
+light_mask = 513
+offset_left = 463.0
+offset_top = 182.0
+offset_right = 675.0
+offset_bottom = 259.0
+theme = SubResource("Theme_4otcc")
+text = "
+"
+flat = true
+
+[node name="EagleAttack1" type="Sprite2D" parent="Button" unique_id=1904831486]
+position = Vector2(21.99997, -8)
+scale = Vector2(3.325, 2.5)
+texture = ExtResource("5_5vw27")
+
+[node name="Gem1" type="Sprite2D" parent="Button" unique_id=242043220]
+position = Vector2(202.00006, 77.000015)
+rotation = 0.20757426
+scale = Vector2(6.3, 4.423077)
+texture = ExtResource("3_4c57u")
+
+[node name="Spritesheet" type="Sprite2D" parent="Button" unique_id=1932832995]
+position = Vector2(210, -23.00003)
+rotation = -0.40593886
+scale = Vector2(4.1545787, 3.2183)
+texture = ExtResource("6_kek77")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Button" unique_id=1529558004]
+position = Vector2(107.00001, 38.000008)
+scale = Vector2(0.5372208, 0.47428578)
+sprite_frames = SubResource("SpriteFrames_4otcc")
+
+[node name="Button2" type="Button" parent="." unique_id=1615970506]
+offset_left = 466.0
+offset_top = 331.0
+offset_right = 678.0
+offset_bottom = 412.0
+tooltip_text = "this is quit button
+"
+theme = SubResource("Theme_ig4if")
+text = "
+
+"
+flat = true
+
+[node name="FrogIdle1" type="Sprite2D" parent="Button2" unique_id=1231627255]
+position = Vector2(176, -13.999998)
+rotation = -0.1959091
+scale = Vector2(3.4714286, 2.9687502)
+texture = ExtResource("7_4c57u")
+
+[node name="Cherry1" type="Sprite2D" parent="Button2" unique_id=1978211726]
+position = Vector2(228, 82)
+rotation = 0.4234811
+scale = Vector2(5.452381, 4.142857)
+texture = ExtResource("7_efxa6")
+
+[node name="Opossum1" type="Sprite2D" parent="Button2" unique_id=1082804697]
+position = Vector2(20.000002, 21)
+rotation = 0.085220635
+scale = Vector2(3.6944447, 3.4285717)
+texture = ExtResource("8_efxa6")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Button2" unique_id=212547291]
+position = Vector2(105.00001, 40.000015)
+scale = Vector2(0.19287336, 0.17073175)
+sprite_frames = SubResource("SpriteFrames_kek77")
+
+[node name="BG" parent="." unique_id=1723757217 instance=ExtResource("2_0xm2m")]
+
+[node name="win" type="CanvasLayer" parent="." unique_id=1087219470]
+
+[node name="win_count" type="Label" parent="win" unique_id=25424578]
+offset_left = 457.0
+offset_top = 422.0
+offset_right = 702.0
+offset_bottom = 464.0
+text = "win"
+script = ExtResource("11_efxa6")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

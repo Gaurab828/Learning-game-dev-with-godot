@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://bg253up6tydyi"]
+
+[ext_resource type="Script" uid="uid://crl31wvmo87r1" path="res://opossum.gd" id="1_jgv2w"]
+[ext_resource type="Texture2D" uid="uid://ckngnff2d5qlq" path="res://Assets/Misc/Sunnyland FX/Sprites/enemy-death/enemy-death-1.png" id="1_ssx64"]
+[ext_resource type="Texture2D" uid="uid://djoosrtag6g8p" path="res://Assets/Misc/Sunnyland FX/Sprites/enemy-death/enemy-death-2.png" id="2_jgv2w"]
+[ext_resource type="Texture2D" uid="uid://47l30l0w0sqh" path="res://Assets/Misc/Sunnyland FX/Sprites/enemy-death/enemy-death-3.png" id="3_eocaq"]
+[ext_resource type="Texture2D" uid="uid://ciwfpwtaap0ks" path="res://Assets/Misc/Sunnyland FX/Sprites/enemy-death/enemy-death-4.png" id="4_lhowr"]
+[ext_resource type="Texture2D" uid="uid://men3pm63tfvl" path="res://Assets/Misc/Sunnyland FX/Sprites/enemy-death/enemy-death-5.png" id="5_25dy3"]
+[ext_resource type="Texture2D" uid="uid://cli0sr800w1tv" path="res://Assets/Misc/Sunnyland FX/Sprites/enemy-death/enemy-death-6.png" id="6_xxq4j"]
+[ext_resource type="Texture2D" uid="uid://b4nl1ny2jgilv" path="res://Assets/Characters/Opossum/opossum/opossum-1.png" id="7_wjnk1"]
+[ext_resource type="Texture2D" uid="uid://csa1ml88su01m" path="res://Assets/Characters/Opossum/opossum/opossum-2.png" id="8_xby1m"]
+[ext_resource type="Texture2D" uid="uid://d2tkcec836ave" path="res://Assets/Characters/Opossum/opossum/opossum-3.png" id="9_d5sp7"]
+[ext_resource type="Texture2D" uid="uid://cvkx6a8xmmnn8" path="res://Assets/Characters/Opossum/opossum/opossum-4.png" id="10_6obip"]
+[ext_resource type="Texture2D" uid="uid://dn7487es7a5ks" path="res://Assets/Characters/Opossum/opossum/opossum-5.png" id="11_sql4t"]
+[ext_resource type="Texture2D" uid="uid://daf70tncu5567" path="res://Assets/Characters/Opossum/opossum/opossum-6.png" id="12_cl5ku"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_53xxm"]
+radius = 3.8748484
+height = 13.924635
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_53xxm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ssx64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_jgv2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_eocaq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lhowr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_25dy3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xxq4j")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_wjnk1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xby1m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_d5sp7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6obip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_sql4t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_cl5ku")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_76ec4"]
+radius = 172.01163
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4otcc"]
+radius = 14.047954
+height = 42.18517
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jgv2w"]
+radius = 6.0
+height = 32.234833
+
+[node name="opossum" type="CharacterBody2D" unique_id=1582080694]
+script = ExtResource("1_jgv2w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1430460824]
+position = Vector2(-5.9604645e-08, -5)
+rotation = 1.6746037
+shape = SubResource("CapsuleShape2D_53xxm")
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1919936993]
+position = Vector2(7.125002, -20.375)
+scale = Vector2(1.7708334, 1.5446427)
+sprite_frames = SubResource("SpriteFrames_53xxm")
+animation = &"run"
+metadata/_edit_lock_ = true
+
+[node name="PlayerDetection" type="Area2D" parent="." unique_id=1912789003]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection" unique_id=1007912295]
+visible = false
+shape = SubResource("CircleShape2D_76ec4")
+
+[node name="PlayerDeath" type="Area2D" parent="." unique_id=1771122670]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDeath" unique_id=1780907421]
+position = Vector2(-0.9999999, -18)
+rotation = -1.0374613
+shape = SubResource("CapsuleShape2D_4otcc")
+
+[node name="Playercollision" type="Area2D" parent="." unique_id=915827617]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Playercollision" unique_id=1047548270]
+position = Vector2(-8.000001, -21.000002)
+rotation = 1.4761126
+shape = SubResource("CapsuleShape2D_jgv2w")
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
+[connection signal="body_entered" from="PlayerDeath" to="." method="_on_player_death_body_entered"]
+[connection signal="body_entered" from="Playercollision" to="." method="_on_playercollision_body_entered"]
