@@ -18,6 +18,6 @@ func loadGame()->void:
 		if not file.eof_reached():
 			var current_line = JSON.parse_string(file.get_line())
 			if current_line:
-				Game.playerHP =current_line["playerHP"]
+				Game.playerHP =20
 				Game.Gold = current_line["Gold"]
 				Game.game_completed = current_line["wins"]
